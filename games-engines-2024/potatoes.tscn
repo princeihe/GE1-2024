@@ -1,12 +1,16 @@
-[gd_scene load_steps=5 format=3 uid="uid://dy5cnieoxphrt"]
+[gd_scene load_steps=8 format=3 uid="uid://dy5cnieoxphrt"]
 
 [ext_resource type="Material" uid="uid://cg2y0i1vm2h3w" path="res://green.tres" id="1_iioba"]
 [ext_resource type="Material" uid="uid://dshafv5p5aegl" path="res://blue.tres" id="2_3x1dm"]
+[ext_resource type="Script" path="res://player.gd" id="3_qddu5"]
+[ext_resource type="Script" path="res://node_3d.gd" id="4_gbybj"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_bsip7"]
 size = Vector2(100, 100)
 
 [sub_resource type="BoxMesh" id="BoxMesh_j55cm"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_21cyd"]
 
 [node name="Node3D" type="Node3D"]
 
@@ -16,14 +20,23 @@ material_override = ExtResource("1_iioba")
 mesh = SubResource("PlaneMesh_bsip7")
 
 [node name="player" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2103, 3.61071, -7.23263)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.200989, 3.60218, -7.23038)
 material_override = ExtResource("2_3x1dm")
 mesh = SubResource("BoxMesh_j55cm")
+script = ExtResource("3_qddu5")
 
 [node name="turret" type="MeshInstance3D" parent="player"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.2103, -3.61071, 7.23263)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.70802, 1.44483, 2.5451)
+material_override = ExtResource("2_3x1dm")
+mesh = SubResource("BoxMesh_21cyd")
 skeleton = NodePath("../..")
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.948995, 6.43019, -19.9292)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.0145, 20.3225, -6.6982)
 fov = 179.0
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.83355, 13.6768, -5.1942)
+
+[node name="wall" type="Node3D" parent="."]
+script = ExtResource("4_gbybj")
